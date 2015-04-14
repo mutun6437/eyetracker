@@ -88,6 +88,10 @@
 					// start loop to draw face
 					drawLoop();
 				}
+
+
+				var bufLeftX =0;
+				var bufLeftY =0;
 				
 				function drawLoop() {
 					requestAnimFrame(drawLoop);
@@ -97,9 +101,20 @@
 						ctrack.draw(overlay);
 					}
 					//計算
-					
-					if(index%2==0){
-						renderAxis();
+					//console.log(index);
+					var positions = ctrack.getCurrentPosition();
+
+					bufLeftX += positions[[33]][0]-positions[[27]][0];
+					bufLeftY += positions[[33]][1]-positions[[27]][1];
+
+					if(index%5==0){
+						var leftX = bufLeftX/5;
+						var leftY = bufLeftY/5; 
+						console.log("フレーム");
+						renderAxis(leftX,leftY);
+
+						bufLeftX=0;
+						bufLeftY=0;
 					}
 					
 

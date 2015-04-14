@@ -3,7 +3,9 @@ var mouses = document.getElementById("mouses");
 
 
 
-function renderAxis(){
+
+
+function renderAxis(leftX,leftY){
 		///////////////////////////////
 		// 記述部分////////////
 		//////////////////////////////
@@ -27,7 +29,9 @@ function renderAxis(){
 		valueX = preLeftValueX*0.99+leftValueX*0.01;
 		valueY = leftValueY;
 
-		drawMouse(valueX,valueY);
+	//	var lf = map(leftX,0,1000,0,document.body.width);
+
+		drawMouse(leftX*100-2800,leftY*100+200);
 		//console.log(valueX);
 		document.getElementById("left").innerHTML="X:"+leftValueX+"\nY:"+leftValueY;
 		document.getElementById("right").innerHTML="X:"+rightValueX+"\nY:"+rightValueY;
