@@ -2,43 +2,50 @@
 var mouses = document.getElementById("mouses");
 
 
+var preLeftValueX=0,preRightValueX=0;
+var preLeftValueY=0,preRightValueY=0;
+var flag = false;
 
 
+function renderAxis(leftX,leftY,rightX,rightY){
+	//console.log(rightX);
+		
+		if(!flag){
+			console.log("初期化");
+			preLeftValueX = leftX;
+			preLeftValueY = leftY;
+			preRightValueX = rightX;
+			preRightValueY = rightY;
+			flag=true;
+		}
 
-function renderAxis(leftX,leftY){
-		///////////////////////////////
-		// 記述部分////////////
-		//////////////////////////////
+		//var positions = ctrack.getCurrentPosition();
 
-
-		var positions = ctrack.getCurrentPosition();
-
-		//鼻頭と左目の距離取得
-		leftValueX = Math.floor((positions[[33]][0]-positions[[27]][0])*100-2600);
-		leftValueY = Math.floor((positions[[33]][1]-positions[[27]][1])*100);
-
-		//鼻頭と右目の距離取得
-		rightValueX = Math.floor((positions[[32]][0]-positions[[33]][0])*100);
-		rightValueY = Math.floor((positions[[33]][1]-positions[[32]][1])*100);
+		
 
 
 
 
 
 		//マウス座標に
-		valueX = preLeftValueX*0.99+leftValueX*0.01;
+		valueX = ((preLeftValueX*0.99+leftX*0.01)-(preRightValueX*0.99+rightX*0.01))/2;
 		valueY = leftValueY;
 
 	//	var lf = map(leftX,0,1000,0,document.body.width);
 
-		drawMouse(leftX*100-2800,leftY*100+200);
 		//console.log(valueX);
-		document.getElementById("left").innerHTML="X:"+leftValueX+"\nY:"+leftValueY;
+
+		drawMouse(valueX*250,0);
+		//console.log(valueX);
+		document.getElementById("left").innerHTML="X:"+valueX+"\nY:"+valueY;
 		document.getElementById("right").innerHTML="X:"+rightValueX+"\nY:"+rightValueY;
 
 		
 		//以前のデータを更新
-		preLeftValueX=leftValueX;
+		preLeftValueX=leftX;
+		preRightValueX=rightX;
+		preLeftValueY=leftY;
+		preRightValueY=rightY;
 }
 
 

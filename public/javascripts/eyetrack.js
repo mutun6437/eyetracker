@@ -81,6 +81,8 @@
 				vid.addEventListener('canplay', enablestart, false);
 				
 				function startVideo() {
+					//do calibration
+					calibration();
 					// start video
 					vid.play();
 					// start tracking
@@ -92,6 +94,8 @@
 
 				var bufLeftX =0;
 				var bufLeftY =0;
+				var bufRightX=0;
+				var bufRightY=0;
 				
 				function drawLoop() {
 					requestAnimFrame(drawLoop);
@@ -107,14 +111,22 @@
 					bufLeftX += positions[[33]][0]-positions[[27]][0];
 					bufLeftY += positions[[33]][1]-positions[[27]][1];
 
+					bufRightX += positions[[32]][0]-positions[[33]][0];
+					bufRightY += positions[[33]][1]-positions[[32]][1];
+
 					if(index%5==0){
 						var leftX = bufLeftX/5;
 						var leftY = bufLeftY/5; 
+						var rightX = bufRightX/5;
+						var rightY = bufRightY/5; 
+
 						console.log("フレーム");
-						renderAxis(leftX,leftY);
+						renderAxis(leftX,leftY,rightX,rightY);
 
 						bufLeftX=0;
 						bufLeftY=0;
+						bufRightX=0;
+						bufRightY=0;
 					}
 					
 
