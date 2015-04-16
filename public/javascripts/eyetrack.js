@@ -7,6 +7,10 @@
 
 				var preLeftValueX=0,preLeftValueY=0,preRightValueX=0,preLeftValueY=0;
 
+				//顔の中心基準点
+				var centerPointX = 0;
+
+				var centerPositionX=0;
 
 				//index
 				var index = 0;
@@ -96,6 +100,7 @@
 				var bufLeftY =0;
 				var bufRightX=0;
 				var bufRightY=0;
+				var bufCenterX = 0;
 				
 				function drawLoop() {
 					requestAnimFrame(drawLoop);
@@ -114,11 +119,14 @@
 					bufRightX += positions[[32]][0]-positions[[33]][0];
 					bufRightY += positions[[33]][1]-positions[[32]][1];
 
+					bufCenterX +=positions[[62]][0];
+
 					if(index%5==0){
 						var leftX = bufLeftX/5;
 						var leftY = bufLeftY/5; 
 						var rightX = bufRightX/5;
 						var rightY = bufRightY/5; 
+						centerPositionX = bufCenterX/5;
 
 						console.log("フレーム");
 						renderAxis(leftX,leftY,rightX,rightY);
@@ -127,6 +135,7 @@
 						bufLeftY=0;
 						bufRightX=0;
 						bufRightY=0;
+						bufCenterX=0;
 					}
 					
 

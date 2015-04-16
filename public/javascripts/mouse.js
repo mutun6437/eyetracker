@@ -34,8 +34,10 @@ function renderAxis(leftX,leftY,rightX,rightY){
 	//	var lf = map(leftX,0,1000,0,document.body.width);
 
 		//console.log(valueX);
+		var value = centerPointX - centerPositionX;
+		console.log("補正値"+value);
 
-		drawMouse(valueX*250,0);
+		drawMouse(valueX*250+value*10,0);
 		//console.log(valueX);
 		document.getElementById("left").innerHTML="X:"+valueX+"\nY:"+valueY;
 		document.getElementById("right").innerHTML="X:"+rightValueX+"\nY:"+rightValueY;
