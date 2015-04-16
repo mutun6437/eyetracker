@@ -6,6 +6,8 @@ var preLeftValueX=0,preRightValueX=0;
 var preLeftValueY=0,preRightValueY=0;
 var flag = false;
 
+var result;
+
 
 function renderAxis(leftX,leftY,rightX,rightY){
 	//console.log(rightX);
@@ -35,9 +37,23 @@ function renderAxis(leftX,leftY,rightX,rightY){
 
 		//console.log(valueX);
 		var value = centerPointX - centerPositionX;
-		console.log("補正値"+value);
+		//console.log("補正値"+value);
 
-		drawMouse(valueX*250+value*10,0);
+		result = valueX*250+value*10;
+		console.log(result);
+/*
+		if(result<maxWidth && result>minWidth){
+			console.log("画面ない");
+			result=map(result,minWidth,maxWidth,0,screen.width);
+			drawMouse(result,0);
+		}else{
+			console.log("画面外");
+			result=5000;
+		}
+*/		
+
+		drawMouse(result,0);
+
 		//console.log(valueX);
 		document.getElementById("left").innerHTML="X:"+valueX+"\nY:"+valueY;
 		document.getElementById("right").innerHTML="X:"+rightValueX+"\nY:"+rightValueY;
@@ -58,7 +74,8 @@ function renderAxis(leftX,leftY,rightX,rightY){
 function drawMouse(x,y){
 	console.log();
 	mouses.style.top =  (screen.height/2)-y*3-300+"px";
-	mouses.style.left = (screen.width/2)+x*3+"px";
+	//mouses.style.left = (screen.width/2)+x*3+"px";
+	mouses.style.left =  x+"px";
 }
 
 

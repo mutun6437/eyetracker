@@ -9,8 +9,13 @@
 
 				//顔の中心基準点
 				var centerPointX = 0;
-
+				//顔の中心座標
 				var centerPositionX=0;
+
+				var maxWidth=0;
+				var maxHeight=0;
+				var minWidth=0;
+				var minHeight=0;
 
 				//index
 				var index = 0;

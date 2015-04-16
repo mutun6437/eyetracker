@@ -14,10 +14,16 @@ function calibration(){
 		step++;
 		calibration();
 	}else if(step===1){
-		posTarget(screen.width/2-target.width,screen.height/2-target.height);
+		posTarget(screen.width/2,screen.height/2-target.height);
 	}else if(step===2){
+		//右上の位置 maxWidth minHeight
 		centerPointX=centerPositionX;
-		posTarget(screen.width-target.width,screen.height/2-target.height);
+		posTarget(screen.width+target.width,0);
+	}else if(step===3){
+		maxWidth=result;
+		posTarget(0,screen.height-target.height);
+	}else if(step===4){
+		minWidth=result;
 	}
 
 	//console.log("円を書きます"+document.body.width);
